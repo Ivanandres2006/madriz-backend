@@ -34,9 +34,9 @@ app.post('/send', (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(error);
-      return res.json({ success: false, message: 'Error sending email: ' + error.message });
+      return res.status(500).json({ success: false, message: 'Error sending email: ' + error.message });
     }
-    res.json({ success: true, message: 'Message sent successfully!' });
+    res.status(200).json({ success: true, message: 'Message sent successfully!' });
   });  
 });
 
