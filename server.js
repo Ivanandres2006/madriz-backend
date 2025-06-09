@@ -37,7 +37,7 @@ app.post('/send', (req, res) => {
       return res.json({ success: false, message: 'Error sending email: ' + error.message });
     }
     res.json({ success: true, message: 'Message sent successfully!' });
-  });
+  });  
 });
 
 app.listen(PORT, () => {
