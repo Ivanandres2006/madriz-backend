@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
   res.send('Backend is working!');
 });
 
+app.use((req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    next();
+  });  
+
 app.post('/send', (req, res) => {
   const { name, email, message } = req.body;
 
