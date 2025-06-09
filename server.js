@@ -13,6 +13,13 @@ app.get('/', (req, res) => {
   res.send('Backend is working!');
 });
 
+const cors = require('cors');
+
+// Allow only your Vercel frontend
+app.use(cors({
+  origin: 'https://madriz-portfolio.vercel.app'
+}));
+
 app.use((req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     next();
