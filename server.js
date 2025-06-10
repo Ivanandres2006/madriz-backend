@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   });  
 
   const sendLimiter = rateLimit({
-    windowMs: 10 * 1000, // 1 minute window
+    windowMs: 60 * 1000, // 1 minute window
     max: 1,              // Limit each IP to 1 request per windowMs
     message: {
       success: false,
