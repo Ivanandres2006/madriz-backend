@@ -39,8 +39,8 @@ app.post('/send', (req, res) => {
   const mailOptions = {
     from: email,
     to: process.env.EMAIL_USER,
-    subject: 'New Contact Form Submission',
-    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    subject: 'Contact, Portofolio',
+    text: `Name: ${name}\nEmail: ${email}\n\nThe Message:\n${message}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -52,6 +52,3 @@ app.post('/send', (req, res) => {
   });  
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
