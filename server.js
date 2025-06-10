@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
@@ -24,6 +25,17 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     next();
   });  
+
+  const sendLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute window
+    max: 1,              // Limit each IP to 1 request per windowMs
+    message: {
+      success: false,
+      message: 'You already sent a message. Please wait a minute before trying again.'
+    }
+  });
+  
+  app.use('/send', sendLimiter); // Apply to the /send route only  
 
 app.post('/send', (req, res) => {
   const { name, email, message } = req.body;
